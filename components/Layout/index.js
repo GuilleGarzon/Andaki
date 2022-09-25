@@ -78,7 +78,7 @@ function Layout({ title, children }) {
 
               {status === 'loading' ? null : session?.user ? (
                 <Menu as="div" className="relative inline-block">
-                  <Menu.Button className="text-black p-3">
+                  <Menu.Button className="text-white font-bold p-3 hover:text-gray-200">
                     {session.user.name}
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg">
