@@ -56,7 +56,7 @@ function AdminOrder() {
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
-          <h1 className="mb-4 text-xl">Ver total de Ordenes</h1>
+          <h1 className="mb-4 text-4xl font-bold mt-5">Ver total de Ordenes</h1>
 
           {loading ? (
             <div>Cargando...</div>

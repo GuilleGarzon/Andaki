@@ -87,14 +87,25 @@ function Layout({ title, children }) {
                         Perfil
                       </DropdownLink>
                     </Menu.Item>
-                    <Menu.Item>
-                      <DropdownLink
-                        className="dropdown-link"
-                        href="/order-history"
-                      >
-                        Historial de Ordenes
-                      </DropdownLink>
-                    </Menu.Item>
+                    {session.user.isAdmin ? (
+                      <Menu.Item>
+                        <DropdownLink
+                          className="dropdown-link"
+                          href="/listProducts"
+                        >
+                          Lista de Productos
+                        </DropdownLink>
+                      </Menu.Item>
+                    ) : (
+                      <Menu.Item>
+                        <DropdownLink
+                          className="dropdown-link"
+                          href="/order-history"
+                        >
+                          Historial de Ordenes
+                        </DropdownLink>
+                      </Menu.Item>
+                    )}
 
                     {session.user.isAdmin && (
                       <Menu.Item>
@@ -120,7 +131,9 @@ function Layout({ title, children }) {
                 </Menu>
               ) : (
                 <Link href="/login">
-                  <a className="p-2 sm:text-lg text-white font-bold hover:text-gray-200">Iniciar Sesión</a>
+                  <a className="p-2 sm:text-lg text-white font-bold hover:text-gray-200">
+                    Iniciar Sesión
+                  </a>
                 </Link>
               )}
             </div>

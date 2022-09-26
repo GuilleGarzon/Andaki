@@ -86,7 +86,7 @@ function AdminUsers() {
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
-          <h1 className="mb-4 text-5xl font-bold mt-5">Usuarios</h1>
+          <h1 className="mb-4 text-4xl font-bold mt-5">Usuarios</h1>
           {loadingDelete && <div>Eliminando...</div>}
           {loading ? (
             <div>Cargando...</div>

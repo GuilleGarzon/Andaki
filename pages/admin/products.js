@@ -110,7 +110,7 @@ function AdminProducts() {
         </div>
         <div className="overflow-x-auto md:col-span-3">
           <div className="flex justify-between">
-            <h1 className="mb-4 text-5xl font-bold mt-5">Productos</h1>
+            <h1 className="mb-4 text-4xl font-bold mt-5">Productos</h1>
             {loadingDelete && <div>Eliminando...</div>}
             <button
               disabled={loadingCreate}
