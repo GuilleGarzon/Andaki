@@ -108,8 +108,6 @@ function OrderScreen() {
     paymentMethod,
     orderItems,
     itemsPrice,
-    taxPrice,
-    shippingPrice,
     totalPrice,
     isPaid,
     paidAt,
@@ -168,7 +166,7 @@ function OrderScreen() {
 
   return (
     <Layout title={`Order ${orderId}`}>
-      <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
+      <h1 className="mb-4 text-xl mt-10">{`Orden ${orderId}`}</h1>
       {loading ? (
         <div>Cargando...</div>
       ) : error ? (
@@ -235,19 +233,7 @@ function OrderScreen() {
                     <div>Items</div>
                     <div>${itemsPrice}</div>
                   </div>
-                </li>{' '}
-                <li>
-                  <div className="mb-2 flex justify-between">
-                    <div>Tax</div>
-                    <div>${taxPrice}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className="mb-2 flex justify-between">
-                    <div>Shipping</div>
-                    <div>${shippingPrice}</div>
-                  </div>
-                </li>
+                </li>{' '}                               
                 <hr className="my-4"/>
                 <li>
                   <div className="mb-2 flex justify-between font-bold">

@@ -19,11 +19,9 @@ export default function PlaceOrderScreen() {
 
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
-  );
-
-  const shippingPrice = itemsPrice > 200 ? 0 : 15;
-  const taxPrice = round2(itemsPrice * 0.15);
-  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
+  );  
+  
+  const totalPrice = round2(itemsPrice);
 
   const router = useRouter();
   useEffect(() => {
@@ -41,8 +39,6 @@ export default function PlaceOrderScreen() {
         orderItems: cartItems,
         paymentMethod,
         itemsPrice,
-        shippingPrice,
-        taxPrice,
         totalPrice,
       });
       setLoading(false);
@@ -139,19 +135,7 @@ export default function PlaceOrderScreen() {
                     <div>Items</div>
                     <div>${itemsPrice}</div>
                   </div>
-                </li>
-                <li>
-                  <div className="mb-2 flex justify-between">
-                    <div>Tax</div>
-                    <div>${taxPrice}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className="mb-2 flex justify-between">
-                    <div>Shipping</div>
-                    <div>${shippingPrice}</div>
-                  </div>
-                </li>
+                </li>                                
                 <hr className="my-4" />
                 <li>
                   <div className="mb-2 flex justify-between font-bold">
