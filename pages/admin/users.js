@@ -78,7 +78,7 @@ function AdminUsers() {
   };
 
   return (
-    <Layout title="Users">
+    <Layout title="Admin Usuarios">
       <div className="grid md:grid-cols-4 md:gap-5 mt-10">
         <div>
           <ul>

@@ -134,7 +134,7 @@ function AdminProductEdit() {
   };
 
   return (
-    <Layout title={`Edit Product ${productId}`}>
+    <Layout title={`Editar Producto ${productId}`}>
       <div className="grid md:grid-cols-4 md:gap-5 mt-10">
         <div>
           <ul>            

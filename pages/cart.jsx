@@ -27,7 +27,7 @@ function Cart() {
     toast.success('Product updated in the cart');
   };
   return (
-    <Layout title="Shopping Cart">
+    <Layout title="Carro de Compras">
       <h1 className="mb-4 sm:text-5xl mt-10">Cesta</h1>
       {cartItems.length === 0 ? (
         <div>

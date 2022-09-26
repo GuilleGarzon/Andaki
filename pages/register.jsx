@@ -47,7 +47,7 @@ export default function Register() {
     }
   };
   return (
-    <Layout title="Create Account">
+    <Layout title="Registro">
       <form
         className="mx-auto max-w-screen-md sm:w-2/4"
         onSubmit={handleSubmit(submitHandler)}

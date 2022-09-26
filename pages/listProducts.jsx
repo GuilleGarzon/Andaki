@@ -7,7 +7,7 @@ import database from '../config/database';
 export default function ListProducts({ products }) {
 
   return (
-    <Layout title="Products">
+    <Layout title="Productos">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 mt-10 mb-10">
         {products.map((product) => (
           <ProductItem
