@@ -14,7 +14,7 @@ function Login() {
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || '/');
+      router.push(redirect || '/listProducts');
     }
   }, [router, session, redirect]);
 
@@ -96,7 +96,7 @@ function Login() {
         </div>
         <div className="flex justify-center sm:text-xl">
           {' '}
-          <Link href={`/register?redirect=${redirect || '/'}`}>
+          <Link href={`/register?redirect=${redirect || '/listProducts'}`}>
             <a className="text-blue-700 hover:text-blue-500">Registrate</a>
           </Link>
         </div>
