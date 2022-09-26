@@ -33,6 +33,7 @@ async function handler(req, res) {
   const toUpdateUser = await User.findById(user._id);
   toUpdateUser.name = name;
   toUpdateUser.lastName = lastName;
+  console.log("🚀 ~ file: update.js ~ line 36 ~ handler ~ lastName", lastName)
   toUpdateUser.email = email;
 
   if (password) {

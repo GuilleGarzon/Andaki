@@ -92,7 +92,7 @@ function Layout({ title, children }) {
                         className="dropdown-link"
                         href="/order-history"
                       >
-                        Order History
+                        Historial de Ordenes
                       </DropdownLink>
                     </Menu.Item>
 
@@ -102,7 +102,7 @@ function Layout({ title, children }) {
                           className="dropdown-link"
                           href="/admin/orders"
                         >
-                          Admin DashBoard
+                          Tablero Admin
                         </DropdownLink>
                       </Menu.Item>
                     )}
