@@ -43,7 +43,7 @@ function reducer(state, action) {
       state;
   }
 }
-function OrderScreen() {
+function Order() {
   const { data: session } = useSession();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -111,16 +111,18 @@ function OrderScreen() {
     totalPrice,
     isPaid,
     paidAt,
-    isDelivered,
-    deliveredAt,
   } = order;
+
+  const total = (totalPrice / 4550).toFixed(2);
+  console.log("🚀 ~ file: [id].jsx ~ line 117 ~ Order ~ total", total)
+  
 
   function createOrder(data, actions) {
     return actions.order
       .create({
         purchase_units: [
           {
-            amount: { value: totalPrice },
+            amount: { value: total },
           },
         ],
       })
@@ -138,15 +140,15 @@ function OrderScreen() {
           details
         );
         dispatch({ type: 'PAY_SUCCESS', payload: data });
-        toast.success('Order is paid successgully');
-      } catch (err) {
+        toast.success('La orden se pago satisfactoriamente');
+      } catch (error) {
         dispatch({ type: 'PAY_FAIL', payload: getError(err) });
-        toast.error(getError(err));
+        toast.error(getError(error));
       }
     });
   }
-  function onError(err) {
-    toast.error(getError(err));
+  function onError(error) {
+    toast.error(getError(error));
   }
 
   async function deliverOrderHandler() {
@@ -277,5 +279,5 @@ function OrderScreen() {
   );
 }
 
-OrderScreen.auth = true;
-export default OrderScreen;
+Order.auth = true;
+export default Order;
