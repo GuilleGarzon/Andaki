@@ -60,7 +60,7 @@ function AdminUsers() {
       dispatch({ type: 'DELETE_REQUEST' });
       await axios.delete(`/api/admin/users/${userId}`);
       dispatch({ type: 'DELETE_SUCCESS' });
-      toast.success('User deleted successfully');
+      toast.success('Usuario Eliminado');
     } catch (err) {
       dispatch({ type: 'DELETE_FAIL' });
       toast.error(getError(err));
