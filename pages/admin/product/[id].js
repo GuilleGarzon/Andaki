@@ -125,7 +125,7 @@ function AdminProductEdit() {
         description,
       });
       dispatch({ type: 'UPDATE_SUCCESS' });
-      toast.success('Product updated successfully');
+      toast.success('Producto actualizado');
       router.push('/admin/products');
     } catch (error) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(error) });
