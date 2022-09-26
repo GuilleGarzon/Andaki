@@ -67,8 +67,8 @@ function AdminProductEdit() {
         setValue('brand', data.brand);
         setValue('countInStock', data.countInStock);
         setValue('description', data.description);
-      } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+      } catch (error) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(error) });
       }
     };
 

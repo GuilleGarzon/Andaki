@@ -5,6 +5,7 @@ import { useEffect, useReducer } from 'react';
 import { toast } from 'react-toastify';
 import Layout from '../../components/Layout/index';
 import { getError } from '../../utils/error';
+import Swal from 'sweetalert2';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -44,17 +45,30 @@ function AdminProducts() {
     error: '',
   });
 
-  const createHandler = async () => {    
-    try {
-      dispatch({ type: 'CREATE_REQUEST' });
-      const { data } = await axios.post('/api/admin/products');
-      dispatch({ type: 'CREATE_SUCCESS' });
-      toast.success('Producto Creado');
-      router.push(`/admin/product/${data.product._id}`);
-    } catch (error) {
-      dispatch({ type: 'CREATE_FAIL' });
-      toast.error(getError(error));
-    }
+  const createHandler = async () => {
+    Swal.fire({
+      title: 'Advertencia',
+      text: 'Está seguro que desea crear producto?',
+      icon: 'error',
+      showDenyButton: true,
+      denyButtonText: 'NO',
+      confirmButtonText: 'SI',
+      confirmButtonColor: 'green',
+    }).then(async (response) =>{      
+        try {
+          if (response.isConfirmed) {
+            dispatch({ type: 'CREATE_REQUEST' });
+            const { data } = await axios.post('/api/admin/products');
+            dispatch({ type: 'CREATE_SUCCESS' });
+            toast.success('Producto Creado');
+            router.push(`/admin/product/${data.product._id}`);
+            Swal.fire('Exito', 'Producto Creado', 'success');            
+          }          
+        } catch (error) {
+          dispatch({ type: 'CREATE_FAIL' }); 
+          toast.error(getError(error));      
+      }  
+    });   
   };
 
   useEffect(() => {
@@ -67,7 +81,7 @@ function AdminProducts() {
         dispatch({ type: 'FETCH_FAIL', payload: getError(error) });
       }
     };
-    
+
     if (successDelete) {
       dispatch({ type: 'DELETE_RESET' });
     } else {
@@ -75,26 +89,35 @@ function AdminProducts() {
     }
   }, [successDelete]);
 
-  const deleteHandler = async (productId) => {
-    if (!window.confirm('Estás seguro?')) {
-      return;
-    }
-    try {
-      dispatch({ type: 'DELETE_REQUEST' });
-      await axios.delete(`/api/admin/products/${productId}`);
-      dispatch({ type: 'DELETE_SUCCESS' });
-      toast.success('Producto Eliminado');
-    } catch (error) {
-      dispatch({ type: 'DELETE_FAIL' });
-      toast.error(getError(error));
-    }
-  };
+  const deleteHandler = (productId) => {
+    Swal.fire({
+      title: 'Advertencia',
+      text: 'Está seguro que desea eliminar el registro?',
+      icon: 'error',
+      showDenyButton: true,
+      denyButtonText: 'NO',
+      confirmButtonText: 'SI',
+      confirmButtonColor: 'green',
+    }).then(async (response) =>{      
+        try {
+          if (response.isConfirmed) {
+            dispatch({ type: 'DELETE_REQUEST' });
+            await axios.delete(`/api/admin/products/${productId}`);
+            dispatch({ type: 'DELETE_SUCCESS' });
+            Swal.fire('Exito', 'El registro se eliminó correctamente', 'success');            
+          }          
+        } catch (error) {
+          dispatch({ type: 'DELETE_FAIL' });    
+          toast.error(getError(error));      
+      }  
+    });    
+  }
 
   return (
     <Layout title="Admin Products">
       <div className="grid md:grid-cols-4 md:gap-5 mt-10 mb-10">
         <div>
-          <ul>            
+          <ul>
             <li>
               <Link href="/admin/orders">Ordenes</Link>
             </li>
@@ -128,7 +151,7 @@ function AdminProducts() {
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead className="border-b">
-                  <tr>                    
+                  <tr>
                     <th className="p-5 text-left">NOMBRE</th>
                     <th className="p-5 text-left">PRECIO</th>
                     <th className="p-5 text-left">CATEGORIA</th>
@@ -145,7 +168,10 @@ function AdminProducts() {
                       <td className=" p-5 ">{product.countInStock}</td>
                       <td className=" p-5 ">
                         <Link href={`/admin/product/${product._id}`}>
-                          <a type="button" className="rounded bg-blue-500 text-white mx-auto py-2 px-4 shadow outline-none hover:bg-blue-600 active:bg-blue-700-button">
+                          <a
+                            type="button"
+                            className="rounded bg-blue-500 text-white mx-auto py-2 px-4 shadow outline-none hover:bg-blue-600 active:bg-blue-700-button"
+                          >
                             Editar
                           </a>
                         </Link>
@@ -153,7 +179,7 @@ function AdminProducts() {
                         <button
                           onClick={() => deleteHandler(product._id)}
                           className="rounded bg-red-600 py-2  px-4 shadow outline-none hover:bg-red-500  active:bg-red-500 text-white"
-                          type='button'
+                          type="button"
                         >
                           Eliminar
                         </button>
@@ -171,4 +197,4 @@ function AdminProducts() {
 }
 
 AdminProducts.auth = { adminOnly: true };
-export default AdminProducts;
+export default AdminProducts
