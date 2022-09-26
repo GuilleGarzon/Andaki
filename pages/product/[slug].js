@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 function Product( props ) {
   const { product } = props;
   const { state, dispatch } = useContext(Store); 
+  const price = Intl.NumberFormat('es-CO', {style: 'decimal',currency: 'COP'}).format(product.price);
   if (!product) {
     return <Layout title="Product Not Found">Product Not Found</Layout>;
   }
@@ -57,7 +58,7 @@ function Product( props ) {
           <div className="card p-5 mt-20">
             <div className="mb-2 flex justify-around text-xl">
               <div>Precio: </div>
-              <div>${product.price}</div>
+              <div>${price}</div>
             </div>            
             <button
               className="rounded bg-blue-500 text-white mx-auto py-2 px-4 flex shadow outline-none hover:bg-blue-600 active:bg-blue-700-buttonw-full"
