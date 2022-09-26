@@ -4,6 +4,7 @@ import React, { useEffect, useReducer } from 'react';
 import { toast } from 'react-toastify';
 import Layout from '../../components/Layout/index';
 import { getError } from '../../utils/error';
+import Swal from 'sweetalert2';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -53,25 +54,34 @@ function AdminUsers() {
   }, [successDelete]);
 
   const deleteHandler = async (userId) => {
-    if (!window.confirm('Estás seguro?')) {
-      return;
-    }
-    try {
-      dispatch({ type: 'DELETE_REQUEST' });
-      await axios.delete(`/api/admin/users/${userId}`);
-      dispatch({ type: 'DELETE_SUCCESS' });
-      toast.success('Usuario Eliminado');
-    } catch (err) {
-      dispatch({ type: 'DELETE_FAIL' });
-      toast.error(getError(err));
-    }
+    Swal.fire({
+      title: 'Advertencia',
+      text: 'Está seguro que desea eliminar el usuario?',
+      icon: 'error',
+      showDenyButton: true,
+      denyButtonText: 'NO',
+      confirmButtonText: 'SI',
+      confirmButtonColor: 'green',
+    }).then(async (response) => {
+      try {
+        if (response.isConfirmed) {
+          dispatch({ type: 'DELETE_REQUEST' });
+          await axios.delete(`/api/admin/users/${userId}`);
+          dispatch({ type: 'DELETE_SUCCESS' });
+          Swal.fire('Exito', 'Usuario Eliminado', 'success');
+        }
+      } catch (error) {
+        dispatch({ type: 'DELETE_FAIL' });
+        toast.error(getError(error));
+      }
+    });
   };
 
   return (
     <Layout title="Users">
       <div className="grid md:grid-cols-4 md:gap-5 mt-10">
         <div>
-          <ul>            
+          <ul>
             <li>
               <Link href="/admin/orders">Ordenes</Link>
             </li>
@@ -111,7 +121,7 @@ function AdminUsers() {
                       <td className=" p-5 ">{user.lastName}</td>
                       <td className=" p-5 ">{user.email}</td>
                       <td className=" p-5 ">{user.isAdmin ? 'SI' : 'NO'}</td>
-                      <td className=" p-5 ">                        
+                      <td className=" p-5 ">
                         <button
                           type="button"
                           className="rounded bg-red-600 py-2  px-4 shadow outline-none hover:bg-red-500  active:bg-red-500 text-white"
