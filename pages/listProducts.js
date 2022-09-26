@@ -29,3 +29,5 @@ export async function getServerSideProps() {
     },
   };
 }
+
+ListProducts.auth = true;
