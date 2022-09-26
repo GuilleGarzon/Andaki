@@ -31,7 +31,7 @@ function Cart() {
       <h1 className="mb-4 sm:text-5xl mt-10">Cesta</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cesta vacía. <Link href="/listProducts">Ir a Productos</Link>
+          Cesta vacía. <Link href="/listProducts"><a className="text-lg text-blue-600 hover:text-blue-400">Ir a Productos</a></Link>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">
@@ -110,7 +110,7 @@ function Cart() {
               </li>
               <li>
                 <button
-                  onClick={() => router.push('/shipping')}
+                  onClick={() => router.push('/payment')}
                   className="rounded bg-blue-500 text-white mx-auto w-32 py-2 px-4 flex justify-center shadow outline-none hover:bg-blue-600 active:bg-blue-700-button"
                 >
                   Pagar

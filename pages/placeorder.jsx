@@ -13,13 +13,13 @@ import { Store } from '../store/index';
 export default function PlaceOrderScreen() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-  const { cartItems, shippingAddress, paymentMethod } = cart;
+  const { cartItems, paymentMethod } = cart;
 
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
-  ); 
+  );
 
   const shippingPrice = itemsPrice > 200 ? 0 : 15;
   const taxPrice = round2(itemsPrice * 0.15);
@@ -39,7 +39,6 @@ export default function PlaceOrderScreen() {
       setLoading(true);
       const { data } = await axios.post('/api/orders', {
         orderItems: cartItems,
-        shippingAddress,
         paymentMethod,
         itemsPrice,
         shippingPrice,
@@ -64,42 +63,38 @@ export default function PlaceOrderScreen() {
 
   return (
     <Layout title="Place Order">
-      <CheckoutWizard activeStep={3} />
-      <h1 className="mb-4 text-xl">Place Order</h1>
+      <CheckoutWizard activeStep={1} />
+      <h1 className="mb-4 text-4xl">Realizar Pedido</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cart is empty. <Link href="/">Go shopping</Link>
+          Cesta vacía.{' '}
+          <Link href="/listProducts">
+            <a className="text-lg text-blue-600 hover:text-blue-400">
+              Ir a Productos
+            </a>
+          </Link>
         </div>
       ) : (
-        <div className="grid md:grid-cols-4 md:gap-5">
+        <div className="grid md:grid-cols-4 md:gap-5 mb-10">
           <div className="overflow-x-auto md:col-span-3">
             <div className="card  p-5">
-              <h2 className="mb-2 text-lg">Shipping Address</h2>
-              <div>
-                {shippingAddress.fullName}, {shippingAddress.address},{' '}
-                {shippingAddress.city}, {shippingAddress.postalCode},{' '}
-                {shippingAddress.country}
-              </div>
-              <div>
-                <Link href="/shipping">Edit</Link>
-              </div>
-            </div>
-            <div className="card  p-5">
-              <h2 className="mb-2 text-lg">Payment Method</h2>
+              <h2 className="mb-2 text-lg font-bold">Método de Pago</h2>
               <div>{paymentMethod}</div>
-              <div>
-                <Link href="/payment">Edit</Link>
+              <div className="mt-4">
+                <Link href="/payment">
+                  <a className="text-blue-600 hover:text-blue-400">Editar</a>
+                </Link>
               </div>
             </div>
             <div className="card overflow-x-auto p-5">
-              <h2 className="mb-2 text-lg">Order Items</h2>
+              <h2 className="mb-2 text-lg font-bold">Pedido</h2>
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
-                    <th className="px-5 text-left">Item</th>
-                    <th className="    p-5 text-right">Quantity</th>
-                    <th className="  p-5 text-right">Price</th>
-                    <th className="p-5 text-right">Subtotal</th>
+                    <th className="px-5 text-left">Producto</th>
+                    <th className="    p-5 text-right">Cantidad</th>
+                    <th className="  p-5 text-right">Precio</th>
+                    <th className="p-5 text-right">Total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -128,14 +123,16 @@ export default function PlaceOrderScreen() {
                   ))}
                 </tbody>
               </table>
-              <div>
-                <Link href="/cart">Edit</Link>
+              <div className="mt-4">
+                <Link href="/cart">
+                  <a className="text-blue-600 hover:text-blue-400">Editar</a>
+                </Link>
               </div>
             </div>
           </div>
           <div>
             <div className="card  p-5">
-              <h2 className="mb-2 text-lg">Order Summary</h2>
+              <h2 className="mb-2 text-lg font-bold">Resumen</h2>
               <ul>
                 <li>
                   <div className="mb-2 flex justify-between">
@@ -155,8 +152,9 @@ export default function PlaceOrderScreen() {
                     <div>${shippingPrice}</div>
                   </div>
                 </li>
+                <hr className="my-4" />
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <div className="mb-2 flex justify-between font-bold">
                     <div>Total</div>
                     <div>${totalPrice}</div>
                   </div>
@@ -165,9 +163,9 @@ export default function PlaceOrderScreen() {
                   <button
                     disabled={loading}
                     onClick={placeOrderHandler}
-                    className="primary-button w-full"
+                    className="rounded bg-blue-600 py-2 w-full px-4 text-white shadow outline-none hover:bg-blue-400  active:bg-blue-400"
                   >
-                    {loading ? 'Loading...' : 'Place Order'}
+                    {loading ? 'Cargando...' : 'Realizar Pedido'}
                   </button>
                 </li>
               </ul>

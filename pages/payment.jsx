@@ -11,14 +11,14 @@ function Payment() {
 
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-  const { shippingAddress, paymentMethod } = cart;
+  const { paymentMethod } = cart;
 
   const router = useRouter();
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (!selectedPaymentMethod) {
-      return toast.error('Payment method is required');
+      return toast.error('Método de pago es requerido');
     }
     dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
     Cookies.set(
@@ -31,19 +31,16 @@ function Payment() {
 
     router.push('/placeorder');
   };
-  useEffect(() => {
-    if (!shippingAddress.address) {
-      return router.push('/shipping');
-    }
+  useEffect(() => {    
     setSelectedPaymentMethod(paymentMethod || '');
-  }, [paymentMethod, router, shippingAddress.address]);
+  }, [paymentMethod, router]);
 
   return (
     <Layout title="Payment Method">
-      <CheckoutWizard activeStep={2} />
+      <CheckoutWizard activeStep={0} />
       <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
-        <h1 className="mb-4 text-xl">Payment Method</h1>
-        {['PayPal', 'Stripe', 'CashOnDelivery'].map((payment) => (
+        <h1 className="mb-4 text-4xl mt-10">Método de Pago</h1>
+        {['PayPal'].map((payment) => (
           <div key={payment} className="mb-4">
             <input
               name="paymentMethod"
@@ -61,13 +58,13 @@ function Payment() {
         ))}
         <div className="mb-4 flex justify-between">
           <button
-            onClick={() => router.push('/shipping')}
+            onClick={() => router.push('/cart')}
             type="button"
-            className="default-button"
+            className=" rounded bg-gray-100 py-2  px-4 text-black shadow outline-none hover:bg-gray-200  active:bg-gray-300"
           >
-            Back
+            Regresar
           </button>
-          <button className="primary-button">Next</button>
+          <button className="rounded bg-blue-600 py-2  px-4 text-white shadow outline-none hover:bg-blue-400  active:bg-blue-400">Siguiente</button>
         </div>
       </form>
     </Layout>
