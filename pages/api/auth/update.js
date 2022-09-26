@@ -4,7 +4,7 @@ import User from '../../../models/User';
 import database from '../../../config/database';
 
 async function handler(req, res) {
-  if (req.method !== 'PUT') {
+  if (req.method !== 'PATCH') {
     return res.status(400).send({ message: `${req.method} no es permitido` });
   }
 
@@ -33,7 +33,6 @@ async function handler(req, res) {
   const toUpdateUser = await User.findById(user._id);
   toUpdateUser.name = name;
   toUpdateUser.lastName = lastName;
-  console.log("🚀 ~ file: update.js ~ line 36 ~ handler ~ lastName", lastName)
   toUpdateUser.email = email;
 
   if (password) {

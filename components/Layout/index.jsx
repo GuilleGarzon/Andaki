@@ -24,7 +24,7 @@ function Layout({ title, children }) {
   const logoutClickHandler = () => {
     Cookies.remove('cart');
     dispatch({ type: 'CART_RESET' });
-    signOut({ callbackUrl: '/' });
+    signOut({ redirect: false, callbackUrl: '/' });
   };
   return (
     <>
@@ -135,7 +135,7 @@ function Layout({ title, children }) {
                     <Menu.Item>
                       <a
                         className="dropdown-link"
-                        href="#"
+                        href="/"
                         onClick={logoutClickHandler}
                       >
                         Cerrar Sesión

@@ -36,7 +36,7 @@ function Payment() {
   }, [paymentMethod, router]);
 
   return (
-    <Layout title="Payment Method">
+    <Layout title="Método de pago">
       <CheckoutWizard activeStep={0} />
       <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
         <h1 className="mb-4 text-4xl mt-10">Método de Pago</h1>

@@ -38,7 +38,7 @@ function AdminOrder() {
   }, []);
 
   return (
-    <Layout title="Admin Dashboard">
+    <Layout title="Tablero Admin">
       <div className="grid md:grid-cols-4 md:gap-5 mt-10">
         <div>
           <ul>            

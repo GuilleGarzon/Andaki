@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 
 export default function Home() {
   return (
-    <Layout title="Home Page">
+    <Layout title="Página de Inicio">
       <main className="min-h-screen relative mb-10">
         <div>
           <video

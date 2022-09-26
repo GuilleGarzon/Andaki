@@ -19,12 +19,13 @@ function Profile() {
 
   useEffect(() => {
     setValue('name', session.user.name);
+    setValue('lastName', session.user.lastName);
     setValue('email', session.user.email);
   }, [session.user, setValue]);
 
   const submitHandler = async ({ name, lastName, email, password }) => {
     try {
-      await axios.put('/api/auth/update', {
+      await axios.patch('/api/auth/update', {
         name,
         lastName,
         email,
@@ -35,7 +36,7 @@ function Profile() {
         email,
         password,
       });
-      toast.success('Profile updated successfully');
+      toast.success('Perfil actualizado');
       if (result.error) {
         toast.error(result.error);
       }
@@ -45,7 +46,8 @@ function Profile() {
   };
 
   return (
-    <Layout title="Profile">
+    <Layout title="Perfil">
+
       <form
         className="mx-auto max-w-screen-md sm:w-2/4"
         onSubmit={handleSubmit(submitHandler)}

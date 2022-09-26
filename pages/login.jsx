@@ -39,7 +39,7 @@ function Login() {
   };
 
   return (
-    <Layout title="Login">
+    <Layout title="Inicio de Sesión">
       <form
         className="mx-auto max-w-screen-md sm:w-2/4"
         onSubmit={handleSubmit(submitHanlder)}

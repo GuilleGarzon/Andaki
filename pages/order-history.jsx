@@ -36,7 +36,7 @@ function OrderHistory() {
     fetchOrders();
   }, []);
   return (
-    <Layout title="Order History">
+    <Layout title="Historial de Ordenes">
       <h1 className="mb-4 text-4xl font-bold mt-10">Historial de Ordenes</h1>
       {loading ? (
         <div>Cargando...</div>

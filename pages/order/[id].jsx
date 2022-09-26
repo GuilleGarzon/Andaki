@@ -167,7 +167,7 @@ function Order() {
   }
 
   return (
-    <Layout title={`Order ${orderId}`}>
+    <Layout title={`Orden ${orderId}`}>
       <h1 className="mb-4 text-xl mt-10">{`Orden ${orderId}`}</h1>
       {loading ? (
         <div>Cargando...</div>
