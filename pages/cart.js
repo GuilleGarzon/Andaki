@@ -111,7 +111,7 @@ function Cart() {
               <li>
                 <button
                   onClick={() => router.push('/shipping')}
-                  className="primary-button w-full"
+                  className="rounded bg-blue-500 text-white mx-auto w-32 py-2 px-4 flex justify-center shadow outline-none hover:bg-blue-600 active:bg-blue-700-button"
                 >
                   Pagar
                 </button>
