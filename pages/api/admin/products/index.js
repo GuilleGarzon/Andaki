@@ -20,16 +20,14 @@ const handler = async (req, res) => {
 const postHandler = async (req, res) => {
   await database.connect();
   const newProduct = new Producto({
-    name: 'sample name',
-    slug: 'sample-name-' + Math.random(),
-    image: '/images/shirt1.jpg',
+    name: 'Ingrese nombre del producto',
+    slug: 'Ingrese slug ' + Math.random(),
+    image: 'Ingrese imagen',
     price: 0,
-    category: 'sample category',
-    brand: 'sample brand',
+    category: 'Ingrese categoría',
+    brand: 'Ingrese Marca',
     countInStock: 0,
-    description: 'sample description',
-    rating: 0,
-    numReviews: 0,
+    description: 'Ingrese Descripción',
   });
   const product = await newProduct.save();
   await database.disconnect();
