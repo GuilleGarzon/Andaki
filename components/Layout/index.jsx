@@ -25,7 +25,7 @@ function Layout({ title, children }) {
     Cookies.remove('cart');
     Cookies.remove(session);
     dispatch({ type: 'CART_RESET' });
-    signOut({ redirect: false, callbackUrl: 'https://andaki-karts.vercel.app/' });
+    signOut({ redirect: false, callbackUrl: '/' });
   };
   return (
     <>
@@ -136,7 +136,7 @@ function Layout({ title, children }) {
                     <Menu.Item>
                       <a
                         className="dropdown-link"
-                        href="https://andaki-karts.vercel.app/"
+                        href="/"
                         onClick={logoutClickHandler}
                       >
                         Cerrar Sesión
