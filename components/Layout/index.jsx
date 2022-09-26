@@ -25,7 +25,7 @@ function Layout({ title, children }) {
     Cookies.remove('cart');
     Cookies.remove(session);
     dispatch({ type: 'CART_RESET' });
-    signOut({ redirect: false, callbackUrl: '/login' });
+    signOut({ redirect: false, callbackUrl: '/' });
   };
   return (
     <>

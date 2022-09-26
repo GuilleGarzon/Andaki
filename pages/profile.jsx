@@ -47,6 +47,7 @@ function Profile() {
 
   return (
     <Layout title="Perfil">
+
       <form
         className="mx-auto max-w-screen-md sm:w-2/4"
         onSubmit={handleSubmit(submitHandler)}
