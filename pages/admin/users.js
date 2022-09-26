@@ -71,10 +71,7 @@ function AdminUsers() {
     <Layout title="Users">
       <div className="grid md:grid-cols-4 md:gap-5 mt-10">
         <div>
-          <ul>
-            <li>
-              <Link href="/admin/dashboard">Tablero</Link>
-            </li>
+          <ul>            
             <li>
               <Link href="/admin/orders">Ordenes</Link>
             </li>

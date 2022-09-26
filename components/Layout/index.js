@@ -100,7 +100,7 @@ function Layout({ title, children }) {
                       <Menu.Item>
                         <DropdownLink
                           className="dropdown-link"
-                          href="/admin/dashboard"
+                          href="/admin/orders"
                         >
                           Admin DashBoard
                         </DropdownLink>
