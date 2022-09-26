@@ -39,17 +39,31 @@ function Layout({ title, children }) {
       <div className="flex min-h-screen flex-col justify-between ">
         <header>
           <nav className="flex h-20 items-center px-4 justify-between shadow-md sm:px-12 bg-red-600">
-            <Link href="/">
-              <a className="flex justify-center items-center">
-                <Image
-                  src="/LogoAndaki.png"
-                  alt="Logo Andaki Karts"
-                  width={60}
-                  height={60}
-                  className="rounded-full"
-                />
-              </a>
-            </Link>
+            {session?.user ? (
+              <Link href="/listProducts">
+                <a className="flex justify-center items-center">
+                  <Image
+                    src="/LogoAndaki.png"
+                    alt="Logo Andaki Karts"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                </a>
+              </Link>
+            ) : (
+              <Link href="/">
+                <a className="flex justify-center items-center">
+                  <Image
+                    src="/LogoAndaki.png"
+                    alt="Logo Andaki Karts"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                </a>
+              </Link>
+            )}
             <div className="flex justify-center text-center ">
               <Link href="/cart">
                 <a className="p-3 text-white font-bold hover:text-gray-200">
