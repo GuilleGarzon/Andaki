@@ -23,9 +23,8 @@ function Layout({ title, children }) {
 
   const logoutClickHandler = () => {
     Cookies.remove('cart');
-    Cookies.remove(session);
     dispatch({ type: 'CART_RESET' });
-    signOut({ redirect: false, callbackUrl: '/' });
+    signOut({ callbackUrl: '/login' });
   };
   return (
     <>
@@ -91,7 +90,7 @@ function Layout({ title, children }) {
                 </a>
               </Link>
 
-              {status === 'loading' ? null : session?.user ? (
+              {status === 'loading' ? 'loading' : session?.user ? (
                 <Menu as="div" className="relative inline-block">
                   <Menu.Button className="text-white font-bold p-3 hover:text-gray-200">
                     {session.user.name}
