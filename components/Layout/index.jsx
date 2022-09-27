@@ -17,14 +17,14 @@ function Layout({ title, children }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const router = useRouter();
+  const { redirect } = router.query;
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
 
   const logoutClickHandler = () => {
-    Cookies.remove('cart');
-    dispatch({ type: 'CART_RESET' });
-    signOut({ callbackUrl: '/login' });
+    signOut({ redirect: false, callbackUrl: '/' });
   };
   return (
     <>
@@ -90,7 +90,7 @@ function Layout({ title, children }) {
                 </a>
               </Link>
 
-              {status === 'loading' ? 'loading' : session?.user ? (
+              {status === 'loading' ? null : session?.user ? (
                 <Menu as="div" className="relative inline-block">
                   <Menu.Button className="text-white font-bold p-3 hover:text-gray-200">
                     {session.user.name}
