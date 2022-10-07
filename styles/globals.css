@@ -22,12 +22,14 @@ a {
   @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
 }
 
-.primary-button {
-  @apply rounded bg-yellow-300 py-2  px-4 text-black shadow outline-none hover:bg-yellow-200  active:bg-yellow-300;
+.btn-login-navBar {
+  @apply py-2.5 px-5 rounded-md text-white border border-white hover:bg-white
+  hover:text-gray-800 transition duration-500 ease-in-out sm:mr-4 mr-2;
 }
 
-.default-button {
-  @apply rounded bg-gray-100 py-2  px-4 text-black shadow outline-none hover:bg-gray-200  active:bg-gray-300;
+.btn-register-navBar {
+  @apply py-2.5 px-5 rounded-md text-white bg-blue-500 border-blue-500
+  hover:bg-blue-600 hover:text-white hover:border-blue-600 transition duration-500 ease-in-out 
 }
 
 input,
