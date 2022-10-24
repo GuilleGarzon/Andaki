@@ -170,7 +170,7 @@ function AdminProducts() {
                         <Link href={`/admin/product/${product._id}`}>
                           <a
                             type="button"
-                            className="rounded bg-blue-500 text-white mx-auto py-2 px-4 shadow outline-none hover:bg-blue-600 active:bg-blue-700-button"
+                            className="rounded bg-blue-500 hover:text-white text-white mx-auto py-2 px-4 shadow outline-none hover:bg-blue-600 active:bg-blue-700-button"
                           >
                             Editar
                           </a>
